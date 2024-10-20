@@ -3,7 +3,7 @@ import { Plus, Minus, X } from 'lucide-react';
 
 // CartItem Component
 const CartItem = ({ item, updateQuantity, removeItem }) => (
-    <div className="flex items-center justify-between py-2 border-b">
+    <div className="flex items-center justify-between py-2 border-b font-arima">
       <div className="flex items-center">
         <img src={item.image} alt={item.title} className="w-12 h-12 object-cover mr-4" />
         <div>
@@ -31,7 +31,7 @@ const CartItem = ({ item, updateQuantity, removeItem }) => (
     if (!isOpen) return null;
   
     return (
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-end z-50">
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-end z-50 font-arima">
         <div className="bg-white w-full max-w-md p-6 overflow-y-auto h-full">
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-2xl font-bold">Your Cart</h2>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Leaf, ShoppingBag, Recycle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import SEO from './Seo';
 
 const EcoLandingPage = () => {
   const [scrollDown, setScrollDown] = useState(false);
@@ -21,7 +22,15 @@ const EcoLandingPage = () => {
   }, []);
 
   return (
-    <div className="bg-green-50 min-h-screen" role="main" aria-label="Main content">
+    <div className="bg-green-50 min-h-screen font-arima" role="main" aria-label="Main content">
+    <SEO
+        title="Accueil - ÉcoShop"
+        description="Découvrez les meilleurs produits éco-responsables chez ÉcoShop"
+        keywords="écologie, produits durables, éco-responsable, shopping"
+        siteURL="https://www.ecoshop.com/"
+        twitterHandle="@ecoshop"
+        imagePreview="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2013&q=80"
+    />
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center">
         <div
@@ -35,13 +44,13 @@ const EcoLandingPage = () => {
         ></div>
         <div className="absolute inset-0 bg-black opacity-50 z-10"></div>
         <div className="z-20 text-center text-white animate-fade-in">
-          <h1 className="text-5xl font-bold font-playfair mb-4 transition-all duration-700 ease-in-out transform hover:scale-105">
-            Bienvenue chez EcoShop
+          <h1 className="text-5xl font-bold font-arima mb-4 transition-all duration-700 ease-in-out transform hover:scale-105">
+            Bienvenu(e) chez EcoShop
           </h1>
-          <p className="text-xl mb-8">Votre destination pour un mode de vie durable</p>
+          <p className="text-xl mb-8 font-arima">Votre destination pour un mode de vie durable</p>
           <button 
             onClick={handleButtonClick} 
-            className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-full transition duration-300 animate-pulse"
+            className="bg-green-600 font-arima hover:bg-green-700 text-white font-bold py-3 px-6 rounded-full transition duration-300 animate-pulse"
             aria-label="Découvrir nos produits"
           >
             Découvrir nos produits
@@ -58,9 +67,9 @@ const EcoLandingPage = () => {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-16 bg-white" aria-labelledby="features-title">
+      <section id="features" className="py-16 bg-white font-arima" aria-labelledby="features-title">
         <div className="container mx-auto px-4">
-          <h2 id="features-title" className="text-3xl font-bold text-center text-green-800 mb-12 animate-slide-in">
+          <h2 id="features-title" className="text-3xl font-arima font-bold text-center text-green-800 mb-12 animate-slide-in">
             Pourquoi choisir ÉcoShop ?
           </h2>
           <div className="grid md:grid-cols-3 gap-10">
@@ -88,7 +97,7 @@ const EcoLandingPage = () => {
       </section>
 
       {/* Call to Action Section */}
-      <section className="py-16 bg-green-100">
+      <section className="py-16 bg-green-100 font-arima">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold text-green-800 mb-4">Prêt à faire la différence ?</h2>
           <p className="text-xl text-gray-600 mb-8">Rejoignez notre communauté d'éco-consommateurs aujourd'hui !</p>
@@ -102,7 +111,7 @@ const EcoLandingPage = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-green-800 text-white py-8">
+      <footer className="bg-green-800 text-white py-8 font-arima">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-8">
             <div>
