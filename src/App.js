@@ -6,7 +6,7 @@ import EcoLandingPage from './components/HomePage';
 function App() {
   return (
     <Router>
-      <div className="App">
+      <div className="App" role="main" aria-label="Main content">
         <Routes>
           <Route path="/" element={<EcoLandingPage />} />
           <Route path="/products" element={<ProductList />} />

@@ -7,8 +7,8 @@ import Navbar from './Navbar';
 
 // Sidebar Component
 const Sidebar = ({ categories, selectedCategory, setSelectedCategory }) => (
-  <aside className="w-full md:w-48 bg-white shadow-sm rounded-lg p-4 h-fit sticky mt-20">
-    <h2 className="font-bold text-lg mb-4">Categories</h2>
+  <aside className="w-full md:w-48 bg-white shadow-sm rounded-lg p-4 h-fit sticky mt-20" aria-labelledby="sidebar-title">
+    <h2 id="sidebar-title" className="font-bold text-lg mb-4">Categories</h2>
     {categories.map((category) => (
       <button
         key={category.name}
@@ -16,6 +16,8 @@ const Sidebar = ({ categories, selectedCategory, setSelectedCategory }) => (
         className={`flex items-center w-full p-2 mb-2 rounded-md text-left text-sm ${
           selectedCategory === category.name ? 'bg-green-100 text-green-800' : 'hover:bg-gray-100'
         }`}
+        aria-pressed={selectedCategory === category.name}
+        aria-label={`Filtrer par catégorie: ${category.label}`}
       >
         <span className="mr-2">{category.icon}</span>
         {category.label}
@@ -124,8 +126,8 @@ const ProductList = () => {
   if (error) return <p className="text-center text-xl mt-10 text-red-500">{error}</p>;
 
   return (
-    <div className="bg-gray-100 min-h-screen p-4 md:p-8 relative">
-    <Navbar />
+    <div className="bg-gray-100 min-h-screen p-4 md:p-8 relative" role="main" aria-label="Product List Page">
+      <Navbar />
       <div className="max-w-7xl mx-auto mt-20">
         <div className="flex flex-col md:flex-row gap-4 md:gap-8">
           <Sidebar
@@ -135,10 +137,8 @@ const ProductList = () => {
           />
   
           <main className="flex-1">
-            <h1 className="text-2xl font-bold mb-6">
-              {categories.find(cat => cat.name === selectedCategory)?.label || 'All Products'}
-            </h1>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4" aria-labelledby="product-grid-title">
+              <h2 id="product-grid-title" className="sr-only">Product List</h2>
               {filteredProducts.map(product => (
                 <ProductCard key={product.id} product={product} addToCart={addToCart} />
               ))}
@@ -150,9 +150,11 @@ const ProductList = () => {
       <button
         onClick={() => setIsCartOpen(true)}
         className="fixed bottom-4 right-4 bg-green-500 text-white p-3 rounded-full shadow-lg"
+        aria-label="Ouvrir le panier"
+        aria-expanded={isCartOpen}
       >
         <ShoppingCart size={24} />
-        <span className="absolute -top-2 -right-2 bg-red-500 text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+        <span className="absolute -top-2 -right-2 bg-red-500 text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center" aria-label={`Nombre total d'articles dans le panier: ${totalItems}`}>
           {totalItems}
         </span>
       </button>
