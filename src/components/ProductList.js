@@ -4,10 +4,11 @@ import { ShoppingCart } from 'lucide-react';
 import ProductCard from './ProductCard';
 import CartPopup from './CartItem';
 import Navbar from './Navbar';
+import SEO from './Seo';
 
 // Sidebar Component
 const Sidebar = ({ categories, selectedCategory, setSelectedCategory }) => (
-  <aside className="w-full md:w-48 bg-white shadow-sm rounded-lg p-4 h-fit sticky mt-20" aria-labelledby="sidebar-title">
+  <aside className="w-full md:w-48 bg-white shadow-sm rounded-lg p-4 h-fit sticky mt-20 font-arima" aria-labelledby="sidebar-title">
     <h2 id="sidebar-title" className="font-bold text-lg mb-4">Categories</h2>
     {categories.map((category) => (
       <button
@@ -126,7 +127,15 @@ const ProductList = () => {
   if (error) return <p className="text-center text-xl mt-10 text-red-500">{error}</p>;
 
   return (
-    <div className="bg-gray-100 min-h-screen p-4 md:p-8 relative" role="main" aria-label="Product List Page">
+    <div className="bg-gray-100 min-h-screen p-4 md:p-8 relativ font-arima" role="main" aria-label="Product List Page">
+        <SEO
+            title="Produits - ÉcoShop"
+            description="Parcourez notre sélection de produits durables et éco-responsables"
+            keywords="produits, durables, écologiques, éco-responsable, shopping"
+            siteURL="https://www.ecoshop.com/products"
+            twitterHandle="@ecoshop"
+            imagePreview="https://www.ecoshop.com/images/products-preview.jpg"
+        />
       <Navbar />
       <div className="max-w-7xl mx-auto mt-20">
         <div className="flex flex-col md:flex-row gap-4 md:gap-8">

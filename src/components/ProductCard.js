@@ -3,7 +3,7 @@ import { ShoppingCart } from 'lucide-react';
 
 // ProductCard Component
 const ProductCard = ({ product, addToCart }) => (
-<div className="bg-white rounded-lg shadow-sm overflow-hidden">
+<div className="bg-white rounded-lg shadow-sm overflow-hidden font-arima">
   <div className="relative">
     <img src={product.image} alt={product.title} className="w-full h-48 object-cover p-4" />
   </div>

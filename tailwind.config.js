@@ -9,6 +9,7 @@ module.exports = {
         serif: ['Merriweather', 'serif'],
         playfair: ['Playfair Display', 'serif'],
         josefin: ['Josefin Sans', 'sans-serif'],
+        arima: ['Arima', 'sans-serif'],
       },
     },
   },
