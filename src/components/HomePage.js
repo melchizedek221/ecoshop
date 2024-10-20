@@ -11,6 +11,10 @@ const EcoLandingPage = () => {
   };
 
   useEffect(() => {
+    document.title = "EcoShop"; 
+  }, []);
+
+  useEffect(() => {
     const onScroll = () => setScrollDown(window.scrollY > 50);
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
@@ -32,7 +36,7 @@ const EcoLandingPage = () => {
         <div className="absolute inset-0 bg-black opacity-50 z-10"></div>
         <div className="z-20 text-center text-white animate-fade-in">
           <h1 className="text-5xl font-bold font-playfair mb-4 transition-all duration-700 ease-in-out transform hover:scale-105">
-            Bienvenue chez ÉcoShop
+            Bienvenue chez EcoShop
           </h1>
           <p className="text-xl mb-8">Votre destination pour un mode de vie durable</p>
           <button 
