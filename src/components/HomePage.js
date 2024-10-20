@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Leaf, ShoppingBag, Recycle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import SEO from './Seo';
 
 const EcoLandingPage = () => {
   const [scrollDown, setScrollDown] = useState(false);
@@ -22,6 +23,14 @@ const EcoLandingPage = () => {
 
   return (
     <div className="bg-green-50 min-h-screen" role="main" aria-label="Main content">
+    <SEO
+        title="Accueil - ÉcoShop"
+        description="Découvrez les meilleurs produits éco-responsables chez ÉcoShop"
+        keywords="écologie, produits durables, éco-responsable, shopping"
+        siteURL="https://www.ecoshop.com/"
+        twitterHandle="@ecoshop"
+        imagePreview="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2013&q=80"
+    />
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center">
         <div
