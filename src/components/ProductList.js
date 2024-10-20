@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { ShoppingCart} from 'lucide-react';
+import { ShoppingCart } from 'lucide-react';
 import ProductCard from './ProductCard';
 import CartPopup from './CartItem';
 
-
 // Sidebar Component
 const Sidebar = ({ categories, selectedCategory, setSelectedCategory }) => (
-<aside className="w-full md:w-48 bg-white shadow-sm rounded-lg p-4 h-fit sticky mt-20">
+  <aside className="w-full md:w-48 bg-white shadow-sm rounded-lg p-4 h-fit sticky mt-20">
     <h2 className="font-bold text-lg mb-4">Categories</h2>
     {categories.map((category) => (
       <button
@@ -42,12 +41,15 @@ const ProductList = () => {
     { name: "women's clothing", icon: '👗', label: "Women's" },
   ];
 
+  // Fetch products from API or localStorage
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get('https://fakestoreapi.com/products');
         setProducts(response.data);
         setFilteredProducts(response.data);
+        // Stocker les produits dans le localStorage
+        localStorage.setItem('products', JSON.stringify(response.data));
         setLoading(false);
       } catch (err) {
         setError('Error loading products');
@@ -55,9 +57,18 @@ const ProductList = () => {
       }
     };
 
-    fetchProducts();
+    // Vérifiez si les produits sont déjà stockés dans le localStorage
+    const storedProducts = localStorage.getItem('products');
+    if (storedProducts) {
+      setProducts(JSON.parse(storedProducts));
+      setFilteredProducts(JSON.parse(storedProducts));
+      setLoading(false);
+    } else {
+      fetchProducts();
+    }
   }, []);
 
+  // Filtrer les produits par catégorie
   useEffect(() => {
     if (selectedCategory === 'all') {
       setFilteredProducts(products);
@@ -66,6 +77,20 @@ const ProductList = () => {
     }
   }, [selectedCategory, products]);
 
+  // Récupérer le panier du localStorage lors du chargement du composant
+  const storedCartItems = localStorage.getItem('cartItems');
+  useEffect(() => {
+    if (storedCartItems) {
+      setCartItems(JSON.parse(storedCartItems));
+    }
+  }, []);
+
+  // Mettre à jour le panier dans le localStorage chaque fois qu'il change
+  useEffect(() => {
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  }, [cartItems]);
+
+  // Fonction pour ajouter un produit au panier
   const addToCart = (product) => {
     setCartItems(prevItems => {
       const existingItem = prevItems.find(item => item.id === product.id);
@@ -140,8 +165,6 @@ const ProductList = () => {
       />
     </div>
   );
-  
-  
 };
 
 export default ProductList;
