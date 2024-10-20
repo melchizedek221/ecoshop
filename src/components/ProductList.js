@@ -36,6 +36,8 @@ const ProductList = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [cartItems, setCartItems] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 10;
 
   const categories = [
     { name: 'all', icon: '🛒', label: 'All' },
@@ -45,14 +47,12 @@ const ProductList = () => {
     { name: "women's clothing", icon: '👗', label: "Women's" },
   ];
 
-  // Fetch products from API or localStorage
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get('https://fakestoreapi.com/products');
         setProducts(response.data);
         setFilteredProducts(response.data);
-        // Stocker les produits dans le localStorage
         localStorage.setItem('products', JSON.stringify(response.data));
         setLoading(false);
       } catch (err) {
@@ -61,7 +61,6 @@ const ProductList = () => {
       }
     };
 
-    // Vérifiez si les produits sont déjà stockés dans le localStorage
     const storedProducts = localStorage.getItem('products');
     if (storedProducts) {
       setProducts(JSON.parse(storedProducts));
@@ -72,16 +71,15 @@ const ProductList = () => {
     }
   }, []);
 
-  // Filtrer les produits par catégorie
   useEffect(() => {
     if (selectedCategory === 'all') {
       setFilteredProducts(products);
     } else {
       setFilteredProducts(products.filter(product => product.category === selectedCategory));
     }
+    setCurrentPage(1); // Reset to the first page when category changes
   }, [selectedCategory, products]);
 
-  // Récupérer le panier du localStorage lors du chargement du composant
   const storedCartItems = localStorage.getItem('cartItems');
   useEffect(() => {
     if (storedCartItems) {
@@ -89,12 +87,10 @@ const ProductList = () => {
     }
   }, []);
 
-  // Mettre à jour le panier dans le localStorage chaque fois qu'il change
   useEffect(() => {
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
   }, [cartItems]);
 
-  // Fonction pour ajouter un produit au panier
   const addToCart = (product) => {
     setCartItems(prevItems => {
       const existingItem = prevItems.find(item => item.id === product.id);
@@ -123,19 +119,25 @@ const ProductList = () => {
   const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
   const totalPrice = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
+  // Calculate pagination
+  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+
   if (loading) return <p className="text-center text-xl mt-10">Loading products...</p>;
   if (error) return <p className="text-center text-xl mt-10 text-red-500">{error}</p>;
 
   return (
-    <div className="bg-gray-100 min-h-screen p-4 md:p-8 relativ font-arima" role="main" aria-label="Product List Page">
-        <SEO
-            title="Produits - ÉcoShop"
-            description="Parcourez notre sélection de produits durables et éco-responsables"
-            keywords="produits, durables, écologiques, éco-responsable, shopping"
-            siteURL="https://www.ecoshop.com/products"
-            twitterHandle="@ecoshop"
-            imagePreview="https://www.ecoshop.com/images/products-preview.jpg"
-        />
+    <div className="bg-green-100 min-h-screen p-4 md:p-8 relativ font-arima" role="main" aria-label="Product List Page">
+      <SEO
+        title="Produits - ÉcoShop"
+        description="Parcourez notre sélection de produits durables et éco-responsables"
+        keywords="produits, durables, écologiques, éco-responsable, shopping"
+        siteURL="https://www.ecoshop.com/products"
+        twitterHandle="@ecoshop"
+        imagePreview="https://www.ecoshop.com/images/products-preview.jpg"
+      />
       <Navbar />
       <div className="max-w-7xl mx-auto mt-20">
         <div className="flex flex-col md:flex-row gap-4 md:gap-8">
@@ -148,9 +150,27 @@ const ProductList = () => {
           <main className="flex-1">
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4" aria-labelledby="product-grid-title">
               <h2 id="product-grid-title" className="sr-only">Product List</h2>
-              {filteredProducts.map(product => (
+              {currentProducts.map(product => (
                 <ProductCard key={product.id} product={product} addToCart={addToCart} />
               ))}
+            </div>
+
+            <div className="flex justify-between mt-4">
+              <button
+                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                disabled={currentPage === 1}
+                className="bg-green-500 text-white px-4 py-2 rounded-md disabled:opacity-50"
+              >
+                Previous
+              </button>
+              <span>Page {currentPage} of {totalPages}</span>
+              <button
+                onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                disabled={currentPage === totalPages}
+                className="bg-green-500 text-white px-4 py-2 rounded-md disabled:opacity-50"
+              >
+                Next
+              </button>
             </div>
           </main>
         </div>

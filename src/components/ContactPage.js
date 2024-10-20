@@ -10,6 +10,11 @@ const ContactPage = () => {
     message: ''
   });
   const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,7 +23,33 @@ const ContactPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    let newErrors = { name: '', email: '', message: '' };
+
+    // Validate name
+    if (formData.name.trim() === '') {
+      newErrors.name = 'Le nom est requis.';
+    }
+
+    // Validate email
+    if (formData.email.trim() === '') {
+      newErrors.email = 'L\'email est requis.';
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = 'Veuillez entrer un email valide.';
+    }
+
+    // Validate message
+    if (formData.message.trim() === '') {
+      newErrors.message = 'Le message est requis.';
+    }
+
+    // Check if there are any errors
+    if (newErrors.name || newErrors.email || newErrors.message) {
+      setErrors(newErrors);
+      return;
+    }
+
     setSubmitted(true);
+    setErrors({ name: '', email: '', message: '' }); 
   };
 
   const ContactInfo = ({ icon: Icon, title, content }) => (
@@ -89,9 +120,10 @@ const ContactPage = () => {
                     name="name" 
                     value={formData.name} 
                     onChange={handleChange} 
-                    className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-transparent transition"
-                    required
+                    className={`w-full p-3 border ${errors.name ? 'border-red-500' : 'border-gray-300'} rounded-md focus:ring-2 focus:ring-green-500 focus:border-transparent transition`}
+                    //required
                   />
+                  {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
                 </div>
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
@@ -101,9 +133,10 @@ const ContactPage = () => {
                     name="email" 
                     value={formData.email} 
                     onChange={handleChange} 
-                    className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-transparent transition"
-                    required
+                    className={`w-full p-3 border ${errors.email ? 'border-red-500' : 'border-gray-300'} rounded-md focus:ring-2 focus:ring-green-500 focus:border-transparent transition`}
+                    //required
                   />
+                  {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
                 </div>
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Message</label>
@@ -112,10 +145,11 @@ const ContactPage = () => {
                     name="message" 
                     value={formData.message} 
                     onChange={handleChange} 
-                    className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-transparent transition"
+                    className={`w-full p-3 border ${errors.message ? 'border-red-500' : 'border-gray-300'} rounded-md focus:ring-2 focus:ring-green-500 focus:border-transparent transition`}
                     rows="6"
-                    required
+                    //required
                   ></textarea>
+                  {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
                 </div>
                 <button 
                   type="submit" 
@@ -128,7 +162,7 @@ const ContactPage = () => {
               </form>
             ) : (
               <div className="text-center py-12">
-                <h3 className="text-3xl font-bold text-green-600 mb-4">Merci pour votre message !</h3>
+                <h3 className="text-3xl font-bold text-green-800 mb-4">Merci pour votre message !</h3>
                 <p className="text-xl text-gray-600">Nous vous répondrons dans les plus brefs délais.</p>
               </div>
             )}

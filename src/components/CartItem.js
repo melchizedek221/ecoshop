@@ -34,13 +34,13 @@ const CartItem = ({ item, updateQuantity, removeItem }) => (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-end z-50 font-arima">
         <div className="bg-white w-full max-w-md p-6 overflow-y-auto h-full">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-2xl font-bold">Your Cart</h2>
+            <h2 className="text-2xl font-bold">Ton panier</h2>
             <button onClick={onClose} className="text-gray-500">
               <X size={24} />
             </button>
           </div>
           {cartItems.length === 0 ? (
-            <p>Your cart is empty.</p>
+            <p>Ton panier est vide.</p>
           ) : (
             <>
               {cartItems.map(item => (

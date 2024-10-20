@@ -12,15 +12,15 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-green-50 p-4 shadow-md fixed top-0 left-0 right-0 z-50 font-arima">
+    <nav className="bg-green-800 p-4 shadow-md fixed top-0 left-0 right-0 z-50 font-arima">
       <div className="container mx-auto">
         {/* Barre de navigation pour écrans larges */}
         <div className="hidden md:flex justify-between items-center">
           <div className="flex items-center space-x-2">
-            <Leaf size={20} className="text-green-600" />
+            <Leaf size={20} className="text-white" />
             <button
               onClick={() => handleNavigation('/')}
-              className="text-3xl font-bold text-green-800 hover:text-green-600 transition-colors duration-300"
+              className="text-3xl font-bold text-white hover:text-green-600 transition-colors duration-300"
             >
               EcoShop
             </button>
@@ -29,7 +29,7 @@ const Navbar = () => {
           <div className="flex items-center space-x-4">
             <button
                 onClick={() => handleNavigation('/contact')}
-                className="text-green-700 hover:text-green-500 transition-colors duration-300"
+                className="text-white hover:text-green-500 transition-colors duration-300"
               >
                 Contact
               </button>
