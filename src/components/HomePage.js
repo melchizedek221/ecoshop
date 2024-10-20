@@ -1,9 +1,16 @@
 import React from 'react';
 import { Leaf, ShoppingBag, Recycle } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 const EcoLandingPage = () => {
   const [scrollDown, setScrollDown] = useState(false);
+  const navigate = useNavigate();
+
+  const handleButtonClick = () => {
+    navigate('/products');
+  };
 
   useEffect(() => {
     const onScroll = () => setScrollDown(window.scrollY > 50);
@@ -28,7 +35,7 @@ const EcoLandingPage = () => {
             Bienvenue chez ÉcoShop
           </h1>
           <p className="text-xl mb-8">Votre destination pour un mode de vie durable</p>
-          <button className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-full transition duration-300 animate-pulse">
+          <button onClick={handleButtonClick} className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-full transition duration-300 animate-pulse">
             Découvrir nos produits
           </button>
         </div>
@@ -94,7 +101,7 @@ const EcoLandingPage = () => {
             <div>
               <h4 className="text-lg font-semibold mb-4">Liens rapides</h4>
               <ul className="text-sm">
-                <li className="mb-2"><a href="#" className="hover:text-green-300">Nos produits</a></li>
+                <li className="mb-2"><a href="/products" className="hover:text-green-300">Nos produits</a></li>
                 <li className="mb-2"><a href="#" className="hover:text-green-300">À propos de nous</a></li>
                 <li className="mb-2"><a href="#" className="hover:text-green-300">Blog</a></li>
                 <li><a href="#" className="hover:text-green-300">Contact</a></li>
@@ -110,7 +117,7 @@ const EcoLandingPage = () => {
             </div>
           </div>
           <div className="mt-8 text-center text-sm">
-            <p>&copy; 2023 ÉcoShop. Tous droits réservés.</p>
+            <p>&copy; 2024 ÉcoShop. Tous droits réservés.</p>
           </div>
         </div>
       </footer>

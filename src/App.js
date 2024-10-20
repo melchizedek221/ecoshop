@@ -1,23 +1,18 @@
-
-import React from 'react';
-import Navbar from './components/Navbar';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import ProductList from './components/ProductList';
 import EcoLandingPage from './components/HomePage';
 
 function App() {
   return (
-    <div className="App">
-
-//       <Navbar />
-//       <main className="pt-20 p-2 mt-2">
-//           <ProductList />
-//       </main>
-
-
-      <EcoLandingPage />
-
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<EcoLandingPage />} />
+          <Route path="/products" element={<ProductList />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
