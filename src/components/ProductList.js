@@ -3,6 +3,7 @@ import axios from 'axios';
 import { ShoppingCart} from 'lucide-react';
 import ProductCard from './ProductCard';
 import CartPopup from './CartItem';
+import Navbar from './Navbar';
 
 
 // Sidebar Component
@@ -99,7 +100,8 @@ const ProductList = () => {
 
   return (
     <div className="bg-gray-100 min-h-screen p-4 md:p-8 relative">
-      <div className="max-w-7xl mx-auto">
+    <Navbar />
+      <div className="max-w-7xl mx-auto mt-20">
         <div className="flex flex-col md:flex-row gap-4 md:gap-8">
           <Sidebar
             categories={categories}
