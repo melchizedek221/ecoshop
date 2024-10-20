@@ -7,7 +7,7 @@ import CartPopup from './CartItem';
 
 // Sidebar Component
 const Sidebar = ({ categories, selectedCategory, setSelectedCategory }) => (
-  <aside className="w-48 bg-white shadow-sm rounded-lg p-4 h-fit sticky top-8">
+<aside className="w-full md:w-48 bg-white shadow-sm rounded-lg p-4 h-fit sticky mt-20">
     <h2 className="font-bold text-lg mb-4">Categories</h2>
     {categories.map((category) => (
       <button
@@ -23,7 +23,6 @@ const Sidebar = ({ categories, selectedCategory, setSelectedCategory }) => (
     ))}
   </aside>
 );
-
 
 // Main ProductList Component
 const ProductList = () => {
@@ -99,20 +98,20 @@ const ProductList = () => {
   if (error) return <p className="text-center text-xl mt-10 text-red-500">{error}</p>;
 
   return (
-    <div className="bg-gray-100 min-h-screen p-8 relative">
+    <div className="bg-gray-100 min-h-screen p-4 md:p-8 relative">
       <div className="max-w-7xl mx-auto">
-        <div className="flex gap-8">
+        <div className="flex flex-col md:flex-row gap-4 md:gap-8">
           <Sidebar
             categories={categories}
             selectedCategory={selectedCategory}
             setSelectedCategory={setSelectedCategory}
           />
-
+  
           <main className="flex-1">
             <h1 className="text-2xl font-bold mb-6">
               {categories.find(cat => cat.name === selectedCategory)?.label || 'All Products'}
             </h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
               {filteredProducts.map(product => (
                 <ProductCard key={product.id} product={product} addToCart={addToCart} />
               ))}
@@ -120,7 +119,7 @@ const ProductList = () => {
           </main>
         </div>
       </div>
-
+  
       <button
         onClick={() => setIsCartOpen(true)}
         className="fixed bottom-4 right-4 bg-green-500 text-white p-3 rounded-full shadow-lg"
@@ -130,7 +129,7 @@ const ProductList = () => {
           {totalItems}
         </span>
       </button>
-
+  
       <CartPopup
         isOpen={isCartOpen}
         onClose={() => setIsCartOpen(false)}
@@ -141,6 +140,8 @@ const ProductList = () => {
       />
     </div>
   );
+  
+  
 };
 
 export default ProductList;

@@ -31,8 +31,8 @@ const CartItem = ({ item, updateQuantity, removeItem }) => (
     if (!isOpen) return null;
   
     return (
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-end">
-        <div className="bg-white w-full max-w-md p-6 overflow-y-auto">
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-end z-50">
+        <div className="bg-white w-full max-w-md p-6 overflow-y-auto h-full">
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-2xl font-bold">Your Cart</h2>
             <button onClick={onClose} className="text-gray-500">

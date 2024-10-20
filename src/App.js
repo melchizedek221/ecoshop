@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Navbar from './components/Navbar';
 import './App.css';
@@ -8,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <main className="pt-20 p-4">
+      <main className="pt-20 p-2 mt-2">
           <ProductList />
       </main>
 

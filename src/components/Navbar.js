@@ -12,19 +12,11 @@ const EcoNavbar = () => {
           <div className="flex items-center space-x-2">
             <Leaf size={50} className="text-green-600" />
             <a href="/" className="text-3xl font-bold text-green-800 hover:text-green-600 transition-colors duration-300">
-              ÉcoShop
+              EcoShop
             </a>
           </div>
           
           <ul className="flex space-x-4">
-            <li className="relative group">
-              <button className="text-green-700 hover:text-green-500 transition-colors duration-300">Produits</button>
-              <ul className="absolute hidden group-hover:block bg-white border border-green-200 rounded shadow-lg mt-2">
-                <li><a href="#" className="block px-4 py-2 text-green-700 hover:bg-green-100">Vêtements durables</a></li>
-                <li><a href="#" className="block px-4 py-2 text-green-700 hover:bg-green-100">Accessoires éco</a></li>
-                <li><a href="#" className="block px-4 py-2 text-green-700 hover:bg-green-100">Produits zéro déchet</a></li>
-              </ul>
-            </li>
             <li><a href="#" className="text-green-700 hover:text-green-500 transition-colors duration-300">À propos</a></li>
             <li><a href="#" className="text-green-700 hover:text-green-500 transition-colors duration-300">Contact</a></li>
           </ul>
@@ -33,12 +25,6 @@ const EcoNavbar = () => {
             <button className="text-green-700 hover:text-green-500 transition-colors duration-300">
               <User size={24} />
             </button>
-            <button className="text-green-700 hover:text-green-500 transition-colors duration-300">
-              <ShoppingCart size={24} />
-            </button>
-            {/* <button className="bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-500 transition-colors duration-300 flex items-center">
-              Eco-action
-            </button> */}
           </div>
         </div>
 
@@ -47,7 +33,7 @@ const EcoNavbar = () => {
           <div className="flex items-center space-x-2">
             <Leaf size={24} className="text-green-600" />
             <a href="/" className="text-2xl font-bold text-green-800">
-              ÉcoShop
+              EcoShop
             </a>
           </div>
           <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-green-700">
@@ -59,9 +45,6 @@ const EcoNavbar = () => {
         {isMenuOpen && (
           <div className="md:hidden mt-4">
             <ul className="space-y-2">
-              <li>
-                <a href="#" className="block py-2 text-green-700 hover:bg-green-100 rounded transition-colors duration-300">Produits</a>
-              </li>
               <li>
                 <a href="#" className="block py-2 text-green-700 hover:bg-green-100 rounded transition-colors duration-300">À propos</a>
               </li>
@@ -75,9 +58,6 @@ const EcoNavbar = () => {
               </button>
               <button className="text-green-700 hover:text-green-500 transition-colors duration-300">
                 <ShoppingCart size={24} />
-              </button>
-              <button className="bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-500 transition-colors duration-300">
-                Eco-action
               </button>
             </div>
           </div>
