@@ -4,6 +4,7 @@ import ProductList from './components/ProductList';
 import EcoLandingPage from './components/HomePage';
 import ContactPage from './components/ContactPage';
 import NotFoundPage from './components/NotFoundPage';
+import { CartProvider } from './components/CartContext';
 
 function App() {
   return (
@@ -11,7 +12,11 @@ function App() {
       <div className="App" role="main" aria-label="Main content">
         <Routes>
           <Route path="/" element={<EcoLandingPage />} />
-          <Route path="/products" element={<ProductList />} />
+          <Route path="/products" element={
+                <CartProvider>
+                  <ProductList />
+                </CartProvider>
+          } />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
