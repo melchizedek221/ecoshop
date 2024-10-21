@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Leaf, ShoppingBag, Recycle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import SEO from './Seo';
+import backgroundImage from '../assets/images/bg_homepage.webp'; 
 
 const EcoLandingPage = () => {
   const [scrollDown, setScrollDown] = useState(false);
@@ -36,8 +37,7 @@ const EcoLandingPage = () => {
         <div
           className="absolute inset-0 bg-cover bg-center z-0"
           style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2013&q=80')",
+            backgroundImage: `url(${backgroundImage})`,
           }}
           role="img"
           aria-label="Beautiful landscape showcasing eco-friendly products"
