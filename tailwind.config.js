@@ -5,10 +5,6 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Poppins', 'sans-serif'],
-        serif: ['Merriweather', 'serif'],
-        playfair: ['Playfair Display', 'serif'],
-        josefin: ['Josefin Sans', 'sans-serif'],
         arima: ['Arima', 'sans-serif'],
       },
     },
