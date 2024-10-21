@@ -32,7 +32,7 @@ const CartItem = ({ item, updateQuantity, removeItem }) => (
   
     return (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-end z-50 font-arima">
-        <div className="bg-white w-full max-w-md p-6 overflow-y-auto h-full">
+        <div className="bg-green-100 w-full max-w-md p-6 overflow-y-auto h-full ">
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-2xl font-bold">Ton panier</h2>
             <button onClick={onClose} className="text-gray-500">

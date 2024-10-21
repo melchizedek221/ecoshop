@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ShoppingCart, Leaf, User, Menu, X } from 'lucide-react';
+import {Leaf, Menu, X } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
@@ -29,7 +29,7 @@ const Navbar = () => {
           <div className="flex items-center space-x-4">
             <button
                 onClick={() => handleNavigation('/contact')}
-                className="text-white hover:text-green-500 transition-colors duration-300"
+                className="text-white font-bold hover:text-green-500 transition-colors duration-300"
               >
                 Contact
               </button>
@@ -42,12 +42,12 @@ const Navbar = () => {
             <Leaf size={24} className="text-green-600" />
             <button
               onClick={() => handleNavigation('/')}
-              className="text-2xl font-bold text-green-800"
+              className="text-2xl font-bold text-white"
             >
               EcoShop
             </button>
           </div>
-          <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-green-700">
+          <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-white">
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
@@ -59,20 +59,12 @@ const Navbar = () => {
               <li>
                 <button
                   onClick={() => handleNavigation('/contact')}
-                  className="block py-2 text-green-700 hover:bg-green-100 rounded transition-colors duration-300"
+                  className="block py-2 text-white hover:bg-green-100 rounded transition-colors duration-300"
                 >
                   Contact
                 </button>
               </li>
             </ul>
-            <div className="mt-4 flex justify-between">
-              <button className="text-green-700 hover:text-green-500 transition-colors duration-300">
-                <User size={24} />
-              </button>
-              <button className="text-green-700 hover:text-green-500 transition-colors duration-300">
-                <ShoppingCart size={24} />
-              </button>
-            </div>
           </div>
         )}
       </div>
