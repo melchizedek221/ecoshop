@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { ShoppingCart } from 'lucide-react';
+import { ShoppingCart, Loader } from 'lucide-react';
 import ProductCard from './ProductCard';
 import CartPopup from './CartItem';
 import Navbar from './Navbar';
@@ -126,7 +126,12 @@ const ProductList = () => {
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
 
-  if (loading) return <p className="text-center text-xl mt-10">Loading products...</p>;
+  if (loading) return (
+    <div className="flex justify-center items-center mt-60">
+    <Navbar />
+    <Loader className="animate-spin text-green-500" size={64} />
+    </div>
+  );
   if (error) return <p className="text-center text-xl mt-10 text-red-500">{error}</p>;
 
   return (
