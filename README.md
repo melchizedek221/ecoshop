@@ -5,7 +5,7 @@
 
 ## Demo
 
-[Lien vers la version déployée](https://ecoshop-demo.com)
+[Lien vers la version déployée](https://eco-shop-sn.vercel.app)
 
 ## Table des matières
 
