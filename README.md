@@ -1,70 +1,116 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# EcoShop
 
-## Available Scripts
+**EcoShop** est une application web de e-commerce dédiée à la promotion des produits durables et éco-responsables. Le site permet aux utilisateurs de parcourir différentes catégories de produits et de faire des achats en ligne de manière intuitive et respectueuse de l'environnement.
 
-In the project directory, you can run:
+## Demo
 
-### `npm start`
+[Lien vers la version déployée](https://ecoshop-demo.com)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Table des matières
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- [Installation](#installation)
+- [Fonctionnalités](#fonctionnalités)
+- [Technologies](#technologies)
+- [API Produits](#api-produits)
+- [Contribuer](#contribuer)
 
-### `npm test`
+## Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Prérequis
 
-### `npm run build`
+- [Node.js](https://nodejs.org/) (version 14 ou supérieure)
+- [npm](https://www.npmjs.com/) ou [yarn](https://yarnpkg.com/)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Étapes d'installation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Clonez le dépôt GitHub sur votre machine locale :
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   ```bash
+   git clone https://github.com/melchizedek221/ecoshop.git
+   ```
 
-### `npm run eject`
+2. Accédez au répertoire du projet :
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   ```bash
+   cd ecoshop
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. Installez les dépendances nécessaires :
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+   Avec npm :
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+   ```bash
+   npm install
+   ```
 
-## Learn More
+   Ou avec yarn :
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+   ```bash
+   yarn install
+   ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+4. Lancer le serveur de développement :
 
-### Code Splitting
+   Avec npm :
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+   ```bash
+   npm start
+   ```
 
-### Analyzing the Bundle Size
+   Ou avec yarn :
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+   ```bash
+   yarn start
+   ```
 
-### Making a Progressive Web App
+L'application sera disponible à l'adresse : `http://localhost:3000/`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Fonctionnalités
 
-### Advanced Configuration
+- Affichage dynamique des produits par catégories.
+- Système de panier avec possibilité d'ajouter et de retirer des produits.
+- Filtres par catégories pour affiner la recherche des produits.
+- Interface responsive pour une utilisation optimale sur mobile.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Technologies
 
-### Deployment
+- **React** : Bibliothèque JavaScript pour la création d'interfaces utilisateur.
+- **Axios** : Client HTTP utilisé pour récupérer les données des produits depuis l'API.
+- **Tailwind CSS** : Framework CSS pour un style rapide et performant.
+- **React Router** : Permet la navigation entre les différentes pages de l'application.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## API Produits
 
-### `npm run build` fails to minify
+L'application utilise l'[API Fake Store](https://fakestoreapi.com/) pour récupérer les informations sur les produits.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Points de terminaison utilisés
+
+- **Récupérer tous les produits** : 
+  ```bash
+  GET https://fakestoreapi.com/products
+  ```
+
+- **Récupérer un produit par ID** : 
+  ```bash
+  GET https://fakestoreapi.com/products/{id}
+  ```
+
+- **Récupérer les catégories de produits** : 
+  ```bash
+  GET https://fakestoreapi.com/products/categories
+  ```
+
+## Contribuer
+
+Les contributions sont les bienvenues ! Si vous souhaitez contribuer, veuillez suivre ces étapes :
+
+1. Forker le projet
+2. Créez une branche pour votre fonctionnalité (`git checkout -b feature/NouvelleFeature`)
+3. Commitez vos modifications (`git commit -m 'Ajout de NouvelleFeature'`)
+4. Poussez votre branche (`git push origin feature/NouvelleFeature`)
+5. Ouvrez une Pull Request
+
+---
+
+© 2024 EcoShop. Tous droits réservés.
