@@ -63,7 +63,7 @@ const ContactPage = () => {
   );
 
   return (
-    <div className="bg-gradient-to-br from-green-50 to-blue-50 min-h-screen py-16 font-arima" role="main" aria-label="Main content">
+    <div className="bg-gradient-to-br from-green-100 to-blue-50 min-h-screen py-16 font-arima" role="main" aria-label="Main content">
       <SEO
         title="Contactez-nous - ÉcoShop"
         description="Contactez ÉcoShop pour toute question ou information complémentaire."
