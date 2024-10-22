@@ -2,5 +2,5 @@
 User-agent: *
 Disallow: /admin/
 Allow: /
-Sitemap: https://www.ecoshop.com/sitemap.xml
+Sitemap: https://eco-shop-sn.vercel.app/sitemap.xml
 
