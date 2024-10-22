@@ -81,7 +81,7 @@ const ContactPage = () => {
           </p>
         </header>
 
-        <div className="grid md:grid-cols-2 gap-12 items-start">
+        <div className="grid md:grid-cols-[1fr,3fr] gap-12 items-start">
           <section className="space-y-8">
             <ContactInfo 
               icon={Mail} 
@@ -96,14 +96,13 @@ const ContactPage = () => {
             <ContactInfo 
               icon={MapPin} 
               title="Adresse" 
-              content="430 Thionakh, Thies" 
+              content="xxx Rue xxx, Thies" 
             />
             <div className="mt-12">
               <h2 className="text-2xl font-semibold text-green-800 mb-4">Nos heures d'ouverture</h2>
               <ul className="space-y-2 text-gray-600">
                 <li>Lundi - Vendredi : 9h00 - 18h00</li>
                 <li>Samedi : 10h00 - 16h00</li>
-                <li>Dimanche : Fermé</li>
               </ul>
             </div>
           </section>

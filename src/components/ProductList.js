@@ -5,11 +5,10 @@ import ProductCard from './ProductCard';
 import CartPopup from './CartItem';
 import Navbar from './Navbar';
 import SEO from './Seo';
-import DraggableCartButton from './DraggableButton';
+import { useCart } from '../context/CartContext';
 
-// Sidebar Component
 const Sidebar = ({ categories, selectedCategory, setSelectedCategory }) => (
-  <aside className="w-full md:w-48 bg-white shadow-sm rounded-lg p-4 h-fit sticky mt-20 font-arima" aria-labelledby="sidebar-title">
+  <aside className="w-full md:w-48 bg-white shadow-sm rounded-lg p-4 h-fit sticky top-24 font-arima" aria-labelledby="sidebar-title">
     <h2 id="sidebar-title" className="font-bold text-lg mb-4">Categories</h2>
     {categories.map((category) => (
       <button
@@ -28,14 +27,13 @@ const Sidebar = ({ categories, selectedCategory, setSelectedCategory }) => (
   </aside>
 );
 
-// Main ProductList Component
 const ProductList = () => {
+  const { totalItems } = useCart();
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('all');
-  const [cartItems, setCartItems] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 10;
@@ -78,49 +76,9 @@ const ProductList = () => {
     } else {
       setFilteredProducts(products.filter(product => product.category === selectedCategory));
     }
-    setCurrentPage(1); // Reset to the first page when category changes
+    setCurrentPage(1);
   }, [selectedCategory, products]);
 
-  const storedCartItems = localStorage.getItem('cartItems');
-  useEffect(() => {
-    if (storedCartItems) {
-      setCartItems(JSON.parse(storedCartItems));
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
-  }, [cartItems]);
-
-  const addToCart = (product) => {
-    setCartItems(prevItems => {
-      const existingItem = prevItems.find(item => item.id === product.id);
-      if (existingItem) {
-        return prevItems.map(item =>
-          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
-        );
-      }
-      return [...prevItems, { ...product, quantity: 1 }];
-    });
-  };
-
-  const updateQuantity = (id, newQuantity) => {
-    if (newQuantity < 1) return;
-    setCartItems(prevItems =>
-      prevItems.map(item =>
-        item.id === id ? { ...item, quantity: newQuantity } : item
-      )
-    );
-  };
-
-  const removeItem = (id) => {
-    setCartItems(prevItems => prevItems.filter(item => item.id !== id));
-  };
-
-  const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
-  const totalPrice = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
-
-  // Calculate pagination
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
@@ -128,14 +86,14 @@ const ProductList = () => {
 
   if (loading) return (
     <div className="flex justify-center items-center mt-60">
-    <Navbar />
-    <Loader className="animate-spin text-green-500" size={64} />
+      <Navbar />
+      <Loader className="animate-spin text-green-500" size={64} />
     </div>
   );
   if (error) return <p className="text-center text-xl mt-10 text-red-500">{error}</p>;
 
   return (
-    <div className="bg-green-100 min-h-screen p-4 md:p-8 relativ font-arima" role="main" aria-label="Product List Page">
+    <div className="bg-green-100 min-h-screen p-4 md:p-8 relative font-arima" role="main" aria-label="Product List Page">
       <SEO
         title="Produits - ÉcoShop"
         description="Parcourez notre sélection de produits durables et éco-responsables"
@@ -157,7 +115,7 @@ const ProductList = () => {
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4" aria-labelledby="product-grid-title">
               <h2 id="product-grid-title" className="sr-only">Product List</h2>
               {currentProducts.map(product => (
-                <ProductCard key={product.id} product={product} addToCart={addToCart} />
+                <ProductCard key={product.id} product={product} />
               ))}
             </div>
 
@@ -189,18 +147,14 @@ const ProductList = () => {
         aria-expanded={isCartOpen}
       >
         <ShoppingCart size={24} />
-        <span className="absolute -top-2 -right-2 bg-red-500 text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center" aria-label={`Nombre total d'articles dans le panier: ${totalItems}`}>
+        <span className="absolute -top-2 -right-2 bg-red-500 text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
           {totalItems}
         </span>
       </button>
-      {/* <DraggableCartButton /> */}
+
       <CartPopup
         isOpen={isCartOpen}
         onClose={() => setIsCartOpen(false)}
-        cartItems={cartItems}
-        updateQuantity={updateQuantity}
-        removeItem={removeItem}
-        totalPrice={totalPrice}
       />
     </div>
   );

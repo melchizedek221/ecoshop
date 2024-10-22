@@ -4,7 +4,7 @@ import ProductList from './components/ProductList';
 import EcoLandingPage from './components/HomePage';
 import ContactPage from './components/ContactPage';
 import NotFoundPage from './components/NotFoundPage';
-import { CartProvider } from './components/CartContext';
+import { CartProvider } from './context/CartContext';
 
 function App() {
   return (
