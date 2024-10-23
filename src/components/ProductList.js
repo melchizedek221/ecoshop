@@ -139,7 +139,6 @@ const ProductList = () => {
           </main>
         </div>
       </div>
-  
       <button
         onClick={() => setIsCartOpen(true)}
         className="fixed bottom-40 right-4 bg-green-500 text-white p-3 rounded-full shadow-lg"
