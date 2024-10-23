@@ -22,7 +22,7 @@ const CartItem = ({ item }) => {
         <button onClick={() => updateQuantity(item.id, item.quantity + 1)} className="p-1">
           <Plus size={16} />
         </button>
-        <button onClick={() => removeItem(item.id)} className="ml-2 text-red-500">
+        <button onClick={() => removeItem(item.id)} className="ml-2 text-red-500" aria-label="Remove from cart">
           <X size={16} />
         </button>
       </div>

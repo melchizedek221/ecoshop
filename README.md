@@ -3,6 +3,22 @@
 
 **EcoShop** est une application web de e-commerce dédiée à la promotion des produits durables et éco-responsables. Le site permet aux utilisateurs de parcourir différentes catégories de produits et de faire des achats en ligne de manière intuitive et respectueuse de l'environnement.
 
+## Table des matières
+
+- [EcoShop](#ecoshop)
+- [Tableau de gestion des tâches](#tableau-de-gestion-des-tâches)
+- [Fonctionnalités à implémenter](#fonctionnalités-à-implémenter)
+- [Structure des composants](#structure-des-composants)
+- [Demo](#demo)
+- [Installation](#installation)
+  - [Prérequis](#prérequis)
+  - [Étapes d'installation](#étapes-dinstallation)
+- [Technologies](#technologies)
+- [API Produits](#api-produits)
+- [Accessibilité](#accessibilité)
+- [Approche responsive](#approche-responsive)
+- [Contribuer](#contribuer)
+
 ## Tableau de gestion des tâches
 
 Vous pouvez suivre l'avancement des tâches et des fonctionnalités du projet sur le tableau GitHub Projects dédié au projet :  
@@ -44,23 +60,8 @@ Le projet est organisé en plusieurs composants réutilisables :
 
 ## Demo
 
-[Lien vers la version déployée](https://eco-shop-sn.vercel.app)
+[Lien vers le portfolio du projet](https://ecoshop-portfolio.vercel.app/)
 
-## Table des matières
-
-- [EcoShop](#ecoshop)
-- [Tableau de gestion des tâches](#tableau-de-gestion-des-tâches)
-- [Fonctionnalités à implémenter](#fonctionnalités-à-implémenter)
-- [Structure des composants](#structure-des-composants)
-- [Demo](#demo)
-- [Installation](#installation)
-  - [Prérequis](#prérequis)
-  - [Étapes d'installation](#étapes-dinstallation)
-- [Technologies](#technologies)
-- [API Produits](#api-produits)
-- [Accessibilité](#accessibilité)
-- [Approche responsive](#approche-responsive)
-- [Contribuer](#contribuer)
 
 ## Installation
 

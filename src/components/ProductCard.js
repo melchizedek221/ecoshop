@@ -34,6 +34,7 @@ const ProductCard = ({ product }) => {
         <div className="flex justify-between items-center">
           <p className="text-green-600 font-bold">${product.price.toFixed(2)}</p>
           <button
+            aria-label="Add to shopping cart"
             onClick={handleCartClick}
             className={`${
               isAdded ? 'bg-green-600' : 'bg-green-500'
