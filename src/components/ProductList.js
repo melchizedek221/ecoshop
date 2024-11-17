@@ -7,21 +7,37 @@ import Navbar from './Navbar';
 import SEO from './Seo';
 import { useCart } from '../context/CartContext';
 
-const Sidebar = ({ categories, selectedCategory, setSelectedCategory }) => (
-  <aside
-    className={`w-full md:w-48 bg-white shadow-sm rounded-lg p-4 h-fit md:sticky md:top-24 font-arima 
-    fixed top-0 left-0 z-50 h-screen md:h-fit md:relative md:z-auto`}
-    aria-labelledby="sidebar-title"
-  >
-    <h2 id="sidebar-title" className="font-bold text-lg mb-4">Categories</h2>
+const Sidebar = ({ categories, selectedCategory, setSelectedCategory, isMobileMenuOpen, setIsMobileMenuOpen }) => (
+  <aside className={`
+    fixed md:relative 
+    ${isMobileMenuOpen ? 'bottom-0' : '-bottom-full'} 
+    left-0 right-0 
+    md:bottom-auto
+    bg-white shadow-sm rounded-lg p-4 
+    transition-all duration-300
+    z-30
+    md:w-48 md:sticky md:top-24 
+    font-arima
+  `}>
+    <div className="flex justify-between items-center mb-4">
+      <h2 id="sidebar-title" className="font-bold text-lg">Categories</h2>
+      <button 
+        className="md:hidden text-gray-500"
+        onClick={() => setIsMobileMenuOpen(false)}
+        aria-label="Fermer le menu des catégories"
+      >
+        ✕
+      </button>
+    </div>
     {categories.map((category) => (
       <button
         key={category.name}
-        onClick={() => setSelectedCategory(category.name)}
+        onClick={() => {
+          setSelectedCategory(category.name);
+          setIsMobileMenuOpen(false);
+        }}
         className={`flex items-center w-full p-2 mb-2 rounded-md text-left text-sm ${
-          selectedCategory === category.name
-            ? 'bg-green-100 text-green-800'
-            : 'hover:bg-gray-100'
+          selectedCategory === category.name ? 'bg-green-100 text-green-800' : 'hover:bg-gray-100'
         }`}
         aria-pressed={selectedCategory === category.name}
         aria-label={`Filtrer par catégorie: ${category.label}`}
@@ -41,6 +57,7 @@ const ProductList = () => {
   const [error, setError] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 10;
 
@@ -115,6 +132,8 @@ const ProductList = () => {
             categories={categories}
             selectedCategory={selectedCategory}
             setSelectedCategory={setSelectedCategory}
+            isMobileMenuOpen={isMobileMenuOpen}
+            setIsMobileMenuOpen={setIsMobileMenuOpen}
           />
   
           <main className="flex-1">
@@ -125,7 +144,7 @@ const ProductList = () => {
               ))}
             </div>
 
-            <div className="flex justify-between mt-4">
+            <div className="flex justify-between mt-4 mb-20 md:mb-4">
               <button
                 onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                 disabled={currentPage === 1}
@@ -145,9 +164,19 @@ const ProductList = () => {
           </main>
         </div>
       </div>
+
+      {/* Mobile category toggle button */}
+      <button
+        onClick={() => setIsMobileMenuOpen(true)}
+        className="fixed bottom-24 right-4 md:hidden bg-green-500 text-white p-3 rounded-full shadow-lg z-40"
+        aria-label="Ouvrir les catégories"
+      >
+        <span className="text-xl">🏷️</span>
+      </button>
+
       <button
         onClick={() => setIsCartOpen(true)}
-        className="fixed bottom-40 right-4 bg-green-500 text-white p-3 rounded-full shadow-lg"
+        className="fixed bottom-4 right-4 bg-green-500 text-white p-3 rounded-full shadow-lg z-40"
         aria-label="Ouvrir le panier"
         aria-expanded={isCartOpen}
       >
