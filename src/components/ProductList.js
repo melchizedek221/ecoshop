@@ -8,14 +8,20 @@ import SEO from './Seo';
 import { useCart } from '../context/CartContext';
 
 const Sidebar = ({ categories, selectedCategory, setSelectedCategory }) => (
-  <aside className="w-full md:w-48 bg-white shadow-sm rounded-lg p-4 h-fit sticky top-24 font-arima" aria-labelledby="sidebar-title">
+  <aside
+    className={`w-full md:w-48 bg-white shadow-sm rounded-lg p-4 h-fit md:sticky md:top-24 font-arima 
+    fixed top-0 left-0 z-50 h-screen md:h-fit md:relative md:z-auto`}
+    aria-labelledby="sidebar-title"
+  >
     <h2 id="sidebar-title" className="font-bold text-lg mb-4">Categories</h2>
     {categories.map((category) => (
       <button
         key={category.name}
         onClick={() => setSelectedCategory(category.name)}
         className={`flex items-center w-full p-2 mb-2 rounded-md text-left text-sm ${
-          selectedCategory === category.name ? 'bg-green-100 text-green-800' : 'hover:bg-gray-100'
+          selectedCategory === category.name
+            ? 'bg-green-100 text-green-800'
+            : 'hover:bg-gray-100'
         }`}
         aria-pressed={selectedCategory === category.name}
         aria-label={`Filtrer par catégorie: ${category.label}`}
